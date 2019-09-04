@@ -6,8 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 export class TestUtils {
-    static beforeEachCompiler(components: Array<any>, providers:
-        Array<any> = []): Promise<{ fixture: any, instance: any }> {
+    static beforeEachCompiler(components: Array<any>, providers: Array<any> = []): Promise<{ fixture: any, instance: any }> {
         return TestUtils.configureIonicTestingModule(components,
             providers)
             .compileComponents().then(() => {
