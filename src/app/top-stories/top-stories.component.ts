@@ -13,13 +13,17 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
   items: Items;
   private offset = 0;
   private limit = 10;
-  private subscription: Subscription
+  private subscription: Subscription;
+  private infiniteScrollComponent: any;
+  private refresherComponent: any;
 
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
     this.subscription = this.itemService.get()
-      .subscribe(items => {console.log(items);this.items = items});
+      .subscribe(items => 
+          this.items = items        
+      );
     this.doLoad(true);
   }
 
@@ -29,13 +33,48 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
     }
   }
 
-  doLoad(refresh: boolean) {
+  private doLoad(refresh: boolean) {
     this.itemService.load({
       offset: this.offset,
       limit: this.limit,
       refresh,
     });
+  }
+
+  hasPrevious(): boolean {
+    return this.offset > 0;
+  }
+
+  previous(): void {
+    if (!this.hasPrevious()) {
+      return;
+    }
+    this.offset -= this.limit;
+    this.doLoad(false);
+  }
+
+  hasNext(): boolean {
+    return this.items != null && (this.offset + this.limit) < this.items.total;
+  }
+
+  next() {
+    if (!this.hasNext()) {
+      return;
+    }
     this.offset += this.limit;
+    this.doLoad(false);
+  }
+
+  canRefresh(): boolean {
+    return this.items != null;
+  }
+
+  refresh() {
+    if (this.canRefresh()) {
+      return;
+    }
+    this.offset = 0;
+    this.doLoad(true);
   }
 
 }

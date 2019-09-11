@@ -1,4 +1,4 @@
-<ion-app>
+<!-- <ion-app>
   <ion-header>
     <ion-toolbar>
       <ion-title>Top Stories</ion-title> 
@@ -7,4 +7,43 @@
   <ion-content padding>
     <app-items [items]="items" *ngIf="items"></app-items>
   </ion-content>
+</ion-app> -->
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Top Stories</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <div>
+      <ion-button color="light" [disabled]="!hasPrevious()" (click)="previous()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        Prev
+      </ion-button>
+      <ion-button [disabled]="!canRefresh()" (click)="refresh()">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button color="light" [disabled]="!hasNext()" (click)="next()">
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+          Next
+        </ion-button>
+    </div>
+    <app-items [items]="items"></app-items>
+  </ion-content>
+  <!-- <ion-content padding>
+    <div>
+      <ion-button color="light" [disabled]="!hasPrevious()" (click)="previous()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        Prev
+      </ion-button>
+      <ion-button [disabled]="!canRefresh()" (click)="refresh()">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button color="light" [disabled]="!hasNext()" (click)="next()">
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+          Next
+        </ion-button>
+    </div>
+    <app-items [items]="items" *ngIf="items"></app-items>
+  </ion-content> -->
 </ion-app>
