@@ -12,7 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { ItemEffects } from './effects/items';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +25,13 @@ import { AngularFireModule } from '@angular/fire';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx HNC DevTools',
+      logOnly: environment.production,
+    }),
+    EffectsModule.forRoot([ItemEffects]),
   ],
   providers: [
     StatusBar,
