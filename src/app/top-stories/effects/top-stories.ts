@@ -44,7 +44,7 @@ export class TopStoriesEffects {
                 stories: {
                     ids,
                 }
-            } = state.topstories;
+            } = state.topStories;
             return new itemActions.Load(ids.slice(offset, offset + limit));
         })
     );
