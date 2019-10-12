@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Items } from '../models/items';
 import { Subscription, Observable, from } from 'rxjs';
-import { ItemService } from '../services/item/item.service';
-import { concat } from 'lodash';
+
 import * as fromTopStories from './reducers';
 import * as topStoriesActions from './actions/top-stories';
 import { Store, select } from '@ngrx/store';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { filter, concatMap } from 'rxjs/operators';
+import { filter, concatMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-top-stories',
@@ -15,15 +14,13 @@ import { filter, concatMap } from 'rxjs/operators';
   styleUrls: ['./top-stories.component.scss'],
 })
 export class TopStoriesComponent implements OnInit, OnDestroy {
-  // items: Items;
+
   items$: Observable<Items>;
   private itemsLoading$: Observable<boolean>;
   private idsLoading$: Observable<boolean>;
   private error$: Observable<any>;
   private loading: HTMLIonLoadingElement;
   private subscriptions: Subscription[];
-  private offset = 0;
-  private limit = 10;
   private infiniteScrollComponent: any;
   private refresherComponent: any;
 
@@ -32,7 +29,8 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController) {
 
-    this.items$ = store.pipe(select(fromTopStories.getDisplayItems));
+    this.items$ = store.pipe(select(fromTopStories.getDisplayItems), map(items => items.results));
+    
     this.itemsLoading$ = store.pipe(select(fromTopStories.isItemLoading));
     this.idsLoading$ = store.pipe(select(fromTopStories.isTopStoriesLoading));
     this.error$ = store.pipe(select(fromTopStories.getError), filter(error => error != null));

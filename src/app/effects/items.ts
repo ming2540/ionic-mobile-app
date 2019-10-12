@@ -18,7 +18,7 @@ export class ItemEffects {
         map((action: Load) => action.payload),
         mergeMap((ids: number[]) => 
             combineLatest(
-                ids.map(id => this.db.object('/v0/item' + id).valueChanges().pipe(take(1)))
+                ids.map(id => this.db.object('/v0/item/' + id).valueChanges().pipe(take(1)))
             ).pipe(
                 map((items: Item[]) => new LoadSuccess(items)),
                 catchError(error => of(new LoadFail(error))),

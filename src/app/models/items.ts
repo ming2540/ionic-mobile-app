@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 //     results: Observable<Item>[];
 // };
 
-// export type Items = Item[];
+export type Items = Item[];
 
-export interface Items {
-    refresh?: boolean;
-    results: Item[];
-    total: number;
-}
+// export interface Items {
+//     refresh?: boolean;
+//     results: Item[];
+//     total: number;
+// }

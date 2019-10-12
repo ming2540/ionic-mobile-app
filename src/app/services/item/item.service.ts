@@ -46,17 +46,10 @@ export class ItemService {
       combineLatest(...(ids.slice(offset, offset + limit)
         .map(id => this.db.object<Item>('/v0/item/' + id).
           valueChanges()))        
-      ).pipe(
-        map(items => ({
-          refresh,
-          total: this.totalItem,
-          results: items
-        }))
       ) as Observable<Items>;
     return merge(
       combineLatest(this.queries, itemIds).pipe(
-        map(([query, ids]) => selector(query, ids).
-          pipe(take(1)))
+        map(([query, ids]) => selector(query, ids).pipe(take(1)))
       ),
       this.queries.pipe(
         skip(1),
