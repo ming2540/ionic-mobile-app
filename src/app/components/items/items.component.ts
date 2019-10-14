@@ -9,7 +9,7 @@ import { Item } from 'src/app/models/item';
 })
 export class ItemsComponent implements OnInit {
   
-  @Input() items: Item[];
+  @Input() items: Items;
   @Output() toOpen = new EventEmitter<string>();
 
   constructor() { }
@@ -17,6 +17,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {}
 
   openPage(url) {
+    console.log(this.toOpen.emit(url))
     this.toOpen.emit(url);
   }
 

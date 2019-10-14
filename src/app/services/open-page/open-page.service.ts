@@ -18,7 +18,9 @@ export class OpenPageService {
 
   open(url: string) {
     this.cancel().then(() => {
-      this.browser = this.inAppBrowser.create(url, '_blank', 'location=no, hidden=yes');
+      console.log('in open with ', url);
+      this.browser = this.inAppBrowser.create(url, '_blank', 'location=no,hidden=yes');
+      console.log('this browser is', this.browser.on('loadstop'))
       this.subscription = this.browser.on('loadstart').subscribe(() => this.showLoading());
       this.subscription.add(this.browser.on('loadstop').subscribe(() => {
         this.hideLoading().then(() => this.browser.show());
