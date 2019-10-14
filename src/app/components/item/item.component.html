@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="item">
   <h2 class="title" (click)="openPage(item.url)">
     <a [href]="item.url">{{ item.title }}</a>
   </h2>
