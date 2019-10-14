@@ -1,17 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from 'src/app/models/item';
+import { InAppBrowserObject } from '@ionic-native/in-app-browser/ngx';
+import { OpenPageService } from '../../services/open-page/open-page.service';
+
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent {
 
   @Input() item: Item;
-
+  @Output() toOpen = new EventEmitter<string>();
   constructor() { }
 
-  ngOnInit() {}
-
+  openPage(url: string): void {
+    this.toOpen.emit(url);
+  }
 }

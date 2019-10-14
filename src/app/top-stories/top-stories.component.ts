@@ -7,6 +7,7 @@ import * as topStoriesActions from './actions/top-stories';
 import { Store, select } from '@ngrx/store';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { filter, concatMap, map } from 'rxjs/operators';
+import { OpenPageService } from '../services/open-page/open-page.service';
 
 @Component({
   selector: 'app-top-stories',
@@ -27,7 +28,8 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<fromTopStories.State>,
               private loadingCtrl: LoadingController,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private openPageService: OpenPageService) {
 
     this.items$ = store.pipe(select(fromTopStories.getDisplayItems), map(items => items.results));
     
@@ -112,5 +114,9 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
       showCloseButton: true,
     }).then(toast => toast.present());
   } 
+
+  openUrl(url) {
+    this.openPageService.open(url);
+  }
 
 }

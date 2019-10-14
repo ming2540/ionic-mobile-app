@@ -30,7 +30,7 @@ export function reducer(
             };
         }
         case ItemActionTypes.LoadSuccess: {
-            return adapter.upsertMany(action.payload, {
+            return adapter.upsertMany(action['payload'], {
                 ...state,
                 loading: false,
                 error: null,
