@@ -22,4 +22,8 @@
     {{ item.url }}
     </span>
   </div>
- </div>
+  <ion-button *ngIf="item.kids" [fill]="'clear'" [routerLink]="['/comments', item.id]">
+    <ion-icon slot="icon-only" name="chatboxes"></ion-icon>
+    {{ item.kids.length }}
+  </ion-button>
+</div>

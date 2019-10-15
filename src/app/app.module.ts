@@ -13,11 +13,12 @@ import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './reducers';
+import { reducers, CustomRouterStateSerializer } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ItemEffects } from './effects/items';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+    }),
     StoreDevtoolsModule.instrument({
       name: 'NgRx HNC DevTools',
       logOnly: environment.production,
@@ -38,7 +42,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [AppComponent]
 })

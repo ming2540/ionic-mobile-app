@@ -17,7 +17,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {}
 
   openPage(url) {
-    console.log(this.toOpen.emit(url))
+    console.log('in items component: ',this.toOpen.emit(url))
     this.toOpen.emit(url);
   }
 

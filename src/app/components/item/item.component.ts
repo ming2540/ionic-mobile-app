@@ -16,6 +16,7 @@ export class ItemComponent {
   constructor() { }
 
   openPage(url: string): void {
+    console.log('in item: ', this.toOpen.emit(url))
     this.toOpen.emit(url);
   }
 }

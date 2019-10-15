@@ -20,7 +20,7 @@ export class OpenPageService {
     this.cancel().then(() => {
       console.log('in open with ', url);
       this.browser = this.inAppBrowser.create(url, '_blank', 'location=no,hidden=yes');
-      console.log('this browser is', this.browser.on('loadstop'))
+      console.log('this browser is', this.inAppBrowser.create(url, '_blank', 'location=no,hidden=yes'))
       this.subscription = this.browser.on('loadstart').subscribe(() => this.showLoading());
       this.subscription.add(this.browser.on('loadstop').subscribe(() => {
         this.hideLoading().then(() => this.browser.show());
@@ -36,7 +36,7 @@ export class OpenPageService {
     return this.alertCtrl.create({
       header: 'Opening...',
       message: 'The page is loading. You can press the Cancel button to stop it.',
-      enableBackdropDismiss: false,
+      backdropDismiss: false,
       buttons: [
         {
         text: 'Cancel',
@@ -58,6 +58,7 @@ export class OpenPageService {
   }
 
   private cancel(): Promise<boolean> {
+    console.log(this.hideLoading)
     return this.hideLoading().then(this.cleanUp.bind(this));
   }
 
@@ -68,8 +69,7 @@ export class OpenPageService {
   private showError(event: InAppBrowserEvent): Promise<void> {
     return this.hideLoading().then(() => {
       return this.toastCtrl.create({
-        message: `Failed to load to page. Code: ${event.code}`,
-        Message: `${event.message}`,
+        message: `Failed to load to page. Code: ${event.code}, Message: ${event.message}`,
         duration: 3000,
         showCloseButton: true,
       }).then(toast => toast.present());
