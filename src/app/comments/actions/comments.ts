@@ -22,3 +22,5 @@ export class LoadSuccess implements Action {
 
     constructor(public payload: Item) {}
 }
+
+export type CommentsActions = Select | LoadMore | LoadSuccess;

@@ -58,7 +58,6 @@ export class OpenPageService {
   }
 
   private cancel(): Promise<boolean> {
-    console.log(this.hideLoading)
     return this.hideLoading().then(this.cleanUp.bind(this));
   }
 
