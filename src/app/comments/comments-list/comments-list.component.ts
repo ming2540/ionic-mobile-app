@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Items } from '../../models/items';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import * as fromComment from '../reducers'
+import * as fromComments from '../reducers'
 import { Location } from '@angular/common';
 import * as fromItems from '../../reducers/items';
 import { map } from 'rxjs/operators';
@@ -22,9 +22,9 @@ export class CommentsListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[];
 
   constructor(private route: ActivatedRoute,
-              private store: Store<fromComment.State>,
+              private store: Store<fromComments.State>,
               private location: Location) { 
-    this.items$ = this.store.pipe(select(fromComment.getSelectedItemChildren));
+    this.items$ = this.store.pipe(select(fromComments.getSelectedItemChildren));
     this.itemsLoading$ = this.store.pipe(select(fromItems.isItemsLoading));
     this.subscriptions = [];
   }
@@ -41,7 +41,7 @@ export class CommentsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subsription => subsription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   load(event) {

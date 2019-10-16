@@ -3,8 +3,8 @@ import { Item } from 'src/app/models/item';
 
 export enum CommentsActionTypes {
     Select = '[Comments] Select',
-    LoadMore = '[Components] Load More',
-    LoadSuccess = '[Components] Load Success',
+    LoadMore = '[Comments] Load More',
+    LoadSuccess = '[Comments] Load Success',
 }
 
 export class Select implements Action {

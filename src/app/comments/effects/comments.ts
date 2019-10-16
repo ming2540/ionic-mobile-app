@@ -9,7 +9,7 @@ import { switchMap, mergeMap, take, withLatestFrom, map } from 'rxjs/operators';
 import * as commentsActions from '../actions/comments';
 import { Item } from 'src/app/models/item';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import * as itemActions from './actions/'
+import * as itemActions from '../../actions/items'
 import { pageSize } from '../reducers/pagination';
 
 

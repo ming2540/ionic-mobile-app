@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers as topStoriesReducer } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { TopStoriesEffects } from './effects/top-stories';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TopStoriesEffects } from './effects/top-stories';
   imports: [
     CommonModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '',

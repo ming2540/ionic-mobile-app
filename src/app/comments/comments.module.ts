@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { CommentsEffects } from './effects/comments';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { CommentsEffects } from './effects/comments';
   imports: [
     CommonModule,
     CommentsRoutingModule,
+    ComponentsModule,
     StoreModule.forFeature('comments', reducers),
     EffectsModule.forFeature([CommentsEffects]),
   ],
