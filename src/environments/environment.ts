@@ -4,9 +4,18 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    databaseURL:  'https://hacker-news.firebaseio.com',
-  }
+  hackernews_db: {
+    databaseURL: 'https://hacker-news.firebaseio.com'
+  },
+  app_db:{
+    apiKey: "AIzaSyC4WYKuy8r1cWauAKvtCd7tdIK33GL4hbU",
+    authDomain: "ionic-mobile-app-cdb01.firebaseapp.com",
+    databaseURL: "https://ionic-mobile-app-cdb01.firebaseio.com",
+    projectId: "ionic-mobile-app-cdb01",
+    storageBucket: "ionic-mobile-app-cdb01.appspot.com",
+    messagingSenderId: "737532337084",
+    appId: "1:737532337084:web:ec4b8dd1406bff2a92a9b9"
+  },
 };
 
 /*

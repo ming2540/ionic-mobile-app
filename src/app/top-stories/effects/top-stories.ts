@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFireDatabase, Action } from '@angular/fire/database';
@@ -9,12 +9,13 @@ import { switchMap, mergeMap, take, catchError, withLatestFrom, map } from 'rxjs
 import * as topStoriesActions from '../actions/top-stories';
 import * as itemActions from '../../actions/items'
 import { pageSize } from '../reducers/pagination';
+import { HACKER_NEWS_DB } from 'src/app/hackernews-db';
 
 @Injectable()
 export class TopStoriesEffects {
     constructor(private actions$: Actions,
                 private store: Store<fromTopStories.State>,
-                private db: AngularFireDatabase) {}
+                @Inject(HACKER_NEWS_DB) private db: AngularFireDatabase) {}
 
     @Effect()
     loadTopStories$: Observable<Action> = this.actions$.pipe(

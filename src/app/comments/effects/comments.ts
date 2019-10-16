@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
@@ -11,13 +11,14 @@ import { Item } from 'src/app/models/item';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import * as itemActions from '../../actions/items'
 import { pageSize } from '../reducers/pagination';
+import { HACKER_NEWS_DB } from 'src/app/hackernews-db';
 
 
 @Injectable()
 export class CommentsEffects {
     constructor(private actions$: Actions,
                 private store: Store<fromComments.State>,
-                private db: AngularFireDatabase) {}
+                @Inject(HACKER_NEWS_DB) private db: AngularFireDatabase) {}
     
     @Effect()
     loadComment$: Observable<Action> = this.actions$.pipe(
