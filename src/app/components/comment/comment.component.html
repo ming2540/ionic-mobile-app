@@ -7,7 +7,7 @@
     </span>
     <span>
       <ion-icon name="time"></ion-icon>
-      {{ time.time | timeAgo }}
+      {{ item.time | timeAgo }}
     </span>
     <ion-button *ngIf="item.kids" [fill]="'clear'" [routerLink]="['/comments', item.id]">
       <ion-icon slot="icon-only" name="chatboxes"></ion-icon>

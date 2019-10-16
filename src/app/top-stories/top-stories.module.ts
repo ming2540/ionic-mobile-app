@@ -16,7 +16,7 @@ import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
-  declarations: [TopStoriesComponent, ItemComponent, ItemsComponent, TimeAgoPipe],
+  declarations: [TopStoriesComponent],
   imports: [
     CommonModule,
     IonicModule,
