@@ -8,6 +8,7 @@
     <ion-title>Create New Account</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content padding>
   <form #signupForm="ngForm">
     <ion-list>
@@ -24,8 +25,7 @@
         <ion-input name="password" type="password" [(ngModel)]="password" required="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-button shape="round" size="default" [disabled]="signupForm.invalid || (loading$ | async)"
-          (click)="signUp(signupForm.value)">Create</ion-button>
+        <ion-button size="default" shape="round" [disabled]="signupForm.invalid || (loading$ | async)" (click)="signUp(signupForm.value)">Create</ion-button>
       </ion-item>
       <ion-item color="danger" *ngIf="error$ | async">
         <p>{{ error$ | async }}</p>

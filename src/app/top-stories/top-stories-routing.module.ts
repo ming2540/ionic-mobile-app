@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TopStoriesComponent } from './top-stories.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: TopStoriesComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

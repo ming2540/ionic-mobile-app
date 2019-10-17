@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { EmailPasswordPair, User, NewAccount } from '../../models/user';
+import { LoginProvider } from '../services/auth.service';
 
 
 export enum AuthActionTypes {
@@ -12,6 +13,7 @@ export enum AuthActionTypes {
     Logout = '[Auth] Logout',
     LogoutSuccess = '[Auth] LogoutSuccess',
     LogoutFailure = '[Auth] LogoutFailure',
+    LoginWithProvider = '[Auth] LoginWithProvider'
 }
 
 export class Login implements Action {
@@ -60,6 +62,12 @@ export class LogoutFailure implements Action {
     readonly type: AuthActionTypes.LogoutFailure
 
     constructor(public payload: any) {}
+}
+
+export class LoginWithProvider implements Action {
+    readonly type: AuthActionTypes.LoginWithProvider
+
+    constructor(public payload: LoginProvider) {}
 }
 
 export type AuthActions = Login | LoginSuccess | LoginSuccess | LoginFailure | Signup | SignupSuccess | SignupFailure | Logout | LogoutSuccess | LogoutFailure;

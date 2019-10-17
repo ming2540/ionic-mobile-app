@@ -4,10 +4,12 @@ import { Subscription, Observable, from } from 'rxjs';
 
 import * as fromTopStories from './reducers';
 import * as topStoriesActions from './actions/top-stories';
+import * as fromAuth from '../auth/reducers/';
 import { Store, select } from '@ngrx/store';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { filter, concatMap, map } from 'rxjs/operators';
 import { OpenPageService } from '../services/open-page/open-page.service';
+import { Logout } from '../auth/actions/auth';
 
 @Component({
   selector: 'app-top-stories',
@@ -24,6 +26,8 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[];
   private infiniteScrollComponent: any;
   private refresherComponent: any;
+  loggedIn$: Observable<boolean>;
+  user$: Observable<any>;
 
 
   constructor(private store: Store<fromTopStories.State>,
@@ -36,6 +40,8 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
     this.itemsLoading$ = store.pipe(select(fromTopStories.isItemLoading));
     this.idsLoading$ = store.pipe(select(fromTopStories.isTopStoriesLoading));
     this.error$ = store.pipe(select(fromTopStories.getError), filter(error => error != null));
+    // this.loggedIn$ = store.pipe(select(fromAuth.))
+    this.user$ = store.pipe(select(fromAuth.getUser));
     this.subscriptions = [];
     }
 
@@ -117,6 +123,10 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
 
   openUrl(url) {
     this.openPageService.open(url);
+  }
+
+  logout() {
+    this.store.dispatch(new Logout());
   }
 
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AuthService } from '../services/auth.service';
+import { AuthService, LoginProvider } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { AuthActionTypes, Login, LoginSuccess, LoginFailure, Signup, SignupSuccess, LogoutSuccess, SignupFailure, LogoutFailure } from '../actions/auth';
+import { AuthActionTypes, Login, LoginSuccess, LoginFailure, Signup, SignupSuccess, LogoutSuccess, SignupFailure, LogoutFailure, LoginWithProvider } from '../actions/auth';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { EmailPasswordPair, NewAccount } from '../../models/user';
 import { from, of } from 'rxjs';
@@ -53,6 +53,19 @@ export class AuthEffects {
                 .pipe(
                     map(user => new LogoutSuccess()),
                     catchError(error => of(new LogoutFailure(error)))
+                )
+        )
+    )
+
+    @Effect()
+    loginWithProvider$ = this.actions$.pipe(
+        ofType(AuthActionTypes.LoginWithProvider),
+        map((action: LoginWithProvider) => action.payload),
+        mergeMap((provider: LoginProvider) => 
+            from(this.authService.loginWithProvider(provider))
+                .pipe(
+                    mergeMap(user => of<Action>(new LoginSuccess(user))),
+                    catchError(error => of(new LoginFailure(error)))
                 )
         )
     )

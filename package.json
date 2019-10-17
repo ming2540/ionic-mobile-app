@@ -31,7 +31,11 @@
     "@ngrx/router-store": "^8.4.0",
     "@ngrx/store": "^8.4.0",
     "@ngrx/store-devtools": "^8.4.0",
+    "cordova-plugin-browsertab": "^0.2.0",
+    "cordova-plugin-buildinfo": "^4.0.0",
+    "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git",
     "core-js": "^2.5.4",
     "firebase": "^6.5.0",
     "lodash": "^4.17.15",
@@ -73,7 +77,13 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-universal-links-plugin": {},
+      "cordova-plugin-browsertab": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "io.vividcode.ionic4.inc"
+      }
     }
   }
 }

@@ -21,6 +21,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { HACKER_NEWS_DB } from './hackernews-db';
 import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AuthModule,
     AngularFireModule.initializeApp(environment.app_db),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
