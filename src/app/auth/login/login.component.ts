@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(value: EmailPasswordPair) {
+    console.log(this.email, this.password);
+    console.log(value)
     this.store.dispatch(new Login(value));
   }
 
