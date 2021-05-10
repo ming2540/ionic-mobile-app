@@ -38,7 +38,7 @@
     "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git",
     "core-js": "^2.5.4",
     "firebase": "^6.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.concat": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "lodash.range": "^3.2.0",
